@@ -45,9 +45,30 @@ dependencies {
     testCompile('com.squareup.assertj:assertj-android:1.1.1') {
         exclude module: 'support-annotations'
     }
+    testCompile('com.squareup.okhttp3:mockwebserver:3.4.1') {
+        exclude group: 'com.squareup.okio', module: 'okio'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 
     androidTestCompile('com.squareup.okhttp3:mockwebserver:3.4.1') {
         exclude group: 'com.squareup.okio', module: 'okio'
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
+
+
+//    testCompile "org.robolectric:shadows-multidex:3.0"
+//    testCompile 'org.robolectric:robolectric:3.3.2'
+//    testCompile('com.squareup.okhttp:mockwebserver:2.7.0', {
+//        exclude group: 'com.squareup.okio', module: 'okio'
+//    })
+//    testCompile 'junit:junit:4.12'
+//    testCompile 'org.mockito:mockito-core:2.7.22'
+//
+//    androidTestCompile('com.squareup.okhttp:mockwebserver:2.7.0', {
+//        exclude group: 'com.squareup.okio', module: 'okio'
+//    })
+//    androidTestCompile 'org.mockito:mockito-core:2.7.22'
+//    androidTestCompile('com.android.support:multidex-instrumentation:1.0.1') {
+//        exclude group: 'com.android.support', module: 'multidex'
+//    }
 }

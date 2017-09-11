@@ -9,6 +9,8 @@ import retrofit2.http.Query;
 
 public interface CurrencyService {
 
+    String API_LATEST = "/latest";
+
     @GET("/latest")
     Observable<Currency> getCurrency(@Query("base") String currency);
 }

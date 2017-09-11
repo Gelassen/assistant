@@ -1,5 +1,7 @@
 package com.coderbunker.assistant.utils;
 
+import com.coderbunker.assistant.Config;
+
 import org.junit.rules.ExternalResource;
 
 import java.io.IOException;
@@ -12,7 +14,10 @@ public class MockWebServerRule extends ExternalResource {
 
     @Override
     protected void before() throws Throwable {
-        mockWebServer.start(1010);
+        mockWebServer = new MockWebServer();
+        mockWebServer.setDispatcher(new MockDispatcher());
+        mockWebServer.url(Config.API);
+        mockWebServer.start(6767);
     }
 
     @Override
