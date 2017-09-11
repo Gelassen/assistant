@@ -2,6 +2,7 @@ package com.coderbunker.assistant;
 
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -16,6 +17,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.api_currency))
