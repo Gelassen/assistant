@@ -1,26 +1,24 @@
 package com.coderbunker.assistant.currency;
 
-
-import com.coderbunker.assistant.App;
+import com.coderbunker.assistant.IApplication;
 import com.coderbunker.assistant.currency.model.Currency;
+import com.coderbunker.assistant.network.NetworkService;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.http.Query;
 
 public class CurrencyProvider implements CurrencyService {
 
-    private CurrencyService service;
+    private NetworkService service;
 
-    public CurrencyProvider(App context) {
-        this.service = context.getRetrofit().create(CurrencyService.class);
+    public CurrencyProvider(IApplication application) {
+        service = new NetworkService(application);
     }
 
     @Override
     public Observable<Currency> getCurrency(@Query("base") String currency) {
-        return service.getCurrency(currency)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return service.getApi().getCurrency(currency);
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
     }
 }

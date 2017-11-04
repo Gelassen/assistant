@@ -6,13 +6,18 @@ public class CurrencyResponseBuilder implements IResponseBuilder {
 
     @Override
     public String getDefault() {
-        ResourceUtils utils = new ResourceUtils();
-        return utils.readString(ResponseType.LATEST.getPath());
+        return getResponse(ResponseType.LATEST_USD);
     }
 
+    @Override
+    public String getResponse(ResponseType responseType) {
+        ResourceUtils utils = new ResourceUtils();
+        return utils.readString(responseType.getPath());
+    }
 
     public enum ResponseType {
-        LATEST("currency/currency_latest.json"); // TODO you might need to add one more slash
+        LATEST_USD("currency/currency_latest_usd"),
+        LATEST_CNY("currency/currency_latest_cny");
 
         private String path;
 

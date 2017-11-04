@@ -16,8 +16,7 @@ public class MockWebServerRule extends ExternalResource {
     protected void before() throws Throwable {
         mockWebServer = new MockWebServer();
         mockWebServer.setDispatcher(new MockDispatcher());
-        mockWebServer.url(Config.API);
-        mockWebServer.start(6767);
+        mockWebServer.start(Config.PORT);
     }
 
     @Override
