@@ -2,29 +2,32 @@ package com.coderbunker.assistant;
 
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
+
+import com.coderbunker.assistant.di.Component;
+import com.coderbunker.assistant.di.DaggerComponent;
+import com.coderbunker.assistant.di.IComponent;
 
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class App extends Application {
+public class App extends Application implements IApplication {
 
     public static final String TAG = "TAG";
 
+    private Component component;
     private Retrofit retrofit;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.api_currency))
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+        component = DaggerComponent.builder().build();
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
+    @Override
+    public IComponent getComponent() {
+        return component;
     }
+
 }

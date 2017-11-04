@@ -44,7 +44,7 @@ public class Rates {
     private Double hUF;
     @SerializedName("IDR")
     @Expose
-    private Integer iDR;
+    private Double iDR;
     @SerializedName("ILS")
     @Expose
     private Double iLS;
@@ -196,11 +196,11 @@ public class Rates {
         this.hUF = hUF;
     }
 
-    public Integer getIDR() {
+    public Double getIDR() {
         return iDR;
     }
 
-    public void setIDR(Integer iDR) {
+    public void setIDR(Double iDR) {
         this.iDR = iDR;
     }
 
