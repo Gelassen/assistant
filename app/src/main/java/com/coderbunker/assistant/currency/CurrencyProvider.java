@@ -5,6 +5,8 @@ import com.coderbunker.assistant.currency.model.Currency;
 import com.coderbunker.assistant.network.NetworkService;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.http.Query;
 
 public class CurrencyProvider implements CurrencyService {
@@ -17,8 +19,8 @@ public class CurrencyProvider implements CurrencyService {
 
     @Override
     public Observable<Currency> getCurrency(@Query("base") String currency) {
-        return service.getApi().getCurrency(currency);
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread());
+        return service.getApi().getCurrency(currency)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
