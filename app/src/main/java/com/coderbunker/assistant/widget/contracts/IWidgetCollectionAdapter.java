@@ -5,6 +5,8 @@ import android.widget.RemoteViewsService;
 
 import com.coderbunker.assistant.currency.model.Currency;
 
+import java.util.ArrayList;
+
 public interface IWidgetCollectionAdapter extends RemoteViewsService.RemoteViewsFactory {
-    void updateDataSet(Currency currency);
+    void updateDataSet(ArrayList<String> currency);
 }

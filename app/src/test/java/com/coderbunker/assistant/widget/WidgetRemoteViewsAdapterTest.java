@@ -1,6 +1,8 @@
 package com.coderbunker.assistant.widget;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.coderbunker.assistant.BaseTest;
@@ -10,11 +12,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.verify;
 
 public class WidgetRemoteViewsAdapterTest extends BaseTest {
@@ -22,28 +26,31 @@ public class WidgetRemoteViewsAdapterTest extends BaseTest {
     @Mock
     private Context context;
 
+    @Mock
+    private Repository repository;
+
     private WidgetRemoteViewsAdapter subject;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        subject = new WidgetRemoteViewsAdapter(context);
+        subject = new WidgetRemoteViewsAdapter(context, getIntent(RuntimeEnvironment.application), repository);
     }
 
     @Test
     public void updateDataSet_oneItems_getCountReturnsOne() {
-        subject.updateDataSet(new Currency());
+        subject.updateDataSet("USD");
 
         assertEquals(1, subject.getCount());
     }
 
     @Test
     public void updateDataSet_threeItems_getCountReturnsThree() {
-        List<Currency> data = new ArrayList<>();
-        data.add(new Currency());
-        data.add(new Currency());
-        data.add(new Currency());
+        ArrayList<String> data = new ArrayList<>();
+        data.add("");
+        data.add("");
+        data.add("");
 
         subject.updateDataSet(data);
 
@@ -52,13 +59,13 @@ public class WidgetRemoteViewsAdapterTest extends BaseTest {
 
     @Test
     public void updateDataSet_fromThreeToOne_getCountReturnsThree() {
-        List<Currency> data = new ArrayList<>();
-        data.add(new Currency());
-        data.add(new Currency());
-        data.add(new Currency());
+        ArrayList<String> data = new ArrayList<>();
+        data.add("");
+        data.add("");
+        data.add("");
         subject.updateDataSet(data);
 
-        subject.updateDataSet(new Currency());
+        subject.updateDataSet("");
 
         assertEquals(1, subject.getCount());
     }
@@ -72,10 +79,10 @@ public class WidgetRemoteViewsAdapterTest extends BaseTest {
 
     @Test
     public void getCount_onThreeItems_returnsThree() {
-        List<Currency> data = new ArrayList<>();
-        data.add(new Currency());
-        data.add(new Currency());
-        data.add(new Currency());
+        ArrayList<String> data = new ArrayList<>();
+        data.add("");
+        data.add("");
+        data.add("");
         subject.updateDataSet(data);
 
         int count = subject.getCount();
@@ -85,7 +92,7 @@ public class WidgetRemoteViewsAdapterTest extends BaseTest {
 
     @Test
     public void getViewAt_anyPosition_returnsRemoteViews() {
-        subject.updateDataSet(new Currency());
+        subject.updateDataSet("");
 
         RemoteViews views = subject.getViewAt(0);
 
@@ -106,4 +113,28 @@ public class WidgetRemoteViewsAdapterTest extends BaseTest {
 
         assertEquals(1, typeCount);
     }
+
+    @Test
+    public void onDataSetChanged_repositoryGetData() {
+        subject.onDataSetChanged();
+
+        verify(repository).saveData(any(ArrayList.class));
+    }
+
+    // region private methods
+
+    private Intent getIntent(Context context) {
+        Intent intent = new Intent(context, WidgetCollectionService.class);
+        intent.putExtra(WidgetCollectionService.EXTRA_PAYLOAD, getPayload());
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 10);
+        return intent;
+    }
+
+    private Currency getPayload() {
+        Currency currency = new Currency();
+        currency.setBase("USD");
+        return currency;
+    }
+
+    // endregion
 }

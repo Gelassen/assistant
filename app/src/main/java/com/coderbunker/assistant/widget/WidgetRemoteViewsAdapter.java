@@ -1,37 +1,44 @@
 package com.coderbunker.assistant.widget;
 
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.coderbunker.assistant.App;
 import com.coderbunker.assistant.R;
-import com.coderbunker.assistant.currency.model.Currency;
 import com.coderbunker.assistant.widget.contracts.IWidgetCollectionAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
+import static com.coderbunker.assistant.widget.WidgetProvider.DATA_FETCHED;
 
 public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
 
-    private List<Currency> data = new ArrayList<>();
+    private ArrayList<String> data = new ArrayList<>();
+    private Repository repository;
     private Context context;
 
-    public WidgetRemoteViewsAdapter(Context context) {
+    public WidgetRemoteViewsAdapter(Context context, Intent intent, Repository repository) {
         this.context = context;
+        this.repository = repository;
+        this.data.add("FAKE ROW");
 
-        Currency currency = new Currency();
-        currency.setBase("100");
-        this.data.add(currency);
+        Log.d(App.TAG, "[5] update adapter. Try to extract data");
+
+        if (intent.hasExtra(DATA_FETCHED)) {
+            Log.d(App.TAG, "Update data from intent");
+            intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
+            this.data.add(intent.getStringExtra(DATA_FETCHED));
+            Log.d(App.TAG, "[6] data is extracted");
+        }
     }
 
-    public void updateDataSet(Currency currency) {
-        updateDataSet(Collections.singletonList(currency));
-    }
-
-    public void updateDataSet(List<Currency> currency) {
-        data.clear();
-        data.addAll(currency);
+    public void updateDataSet(String data) {
+        updateDataSet(new ArrayList<>(Collections.singletonList(data)));
     }
 
     @Override
@@ -41,7 +48,9 @@ public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
 
     @Override
     public void onDataSetChanged() {
-        // no op
+        Log.d(App.TAG, "onDataSetChanged");
+        data.clear();
+        data.addAll(repository.getData());
     }
 
     @Override
@@ -57,7 +66,7 @@ public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_item);
-        views.setTextViewText(R.id.data, data.get(position).getBase());
+        views.setTextViewText(R.id.data, data.get(position));
         return views;
     }
 
@@ -79,5 +88,11 @@ public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
     @Override
     public boolean hasStableIds() {
         return false;
+    }
+
+    @Override
+    public void updateDataSet(ArrayList<String> currency) {
+        data.clear();
+        data.addAll(currency);
     }
 }
