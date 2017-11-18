@@ -11,7 +11,6 @@ import android.widget.RemoteViewsService;
 import com.coderbunker.assistant.App;
 import com.coderbunker.assistant.IApplication;
 import com.coderbunker.assistant.currency.CurrencyProvider;
-import com.coderbunker.assistant.currency.model.Currency;
 import com.coderbunker.assistant.utils.SimpleObserver;
 import com.coderbunker.assistant.widget.contracts.IWidgetCollectionAdapter;
 
@@ -52,6 +51,7 @@ public class WidgetCollectionService extends RemoteViewsService {
 
     public WidgetCollectionService() {
         widgetRemoteViewsFactory = new WidgetRemoteViewsFactory();
+        currencyProvider = new CurrencyProvider(App.getApplication());
     }
 
     @Inject
@@ -69,19 +69,12 @@ public class WidgetCollectionService extends RemoteViewsService {
         widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
         viewsFactory = widgetRemoteViewsFactory.newInstance(this, intent, getRepository());
-        Observable<ArrayList<String>> data = getCurrencyProvider().getCurrencyBoard("USD");
+        Observable<ArrayList<String>> data = currencyProvider.getCurrencyBoard("CNY");
         data.subscribe(getCurrencyObserver());
         return viewsFactory;
     }
 
     // region private methods
-
-    private CurrencyProvider getCurrencyProvider() {
-        if (currencyProvider == null) {
-            currencyProvider = new CurrencyProvider((IApplication) getApplication());
-        }
-        return currencyProvider;
-    }
 
     private Repository getRepository() {
         if (repository == null) {
@@ -103,7 +96,7 @@ public class WidgetCollectionService extends RemoteViewsService {
             public void onNext(ArrayList<String> data) {
                 super.onNext(data);
                 Log.d(App.TAG, "[1] get data from network. Size: " + data.size());
-                repository.saveData(data);
+                repository.saveData(widgetId, data);
                 notifyDataSource(data);
             }
         };

@@ -1,6 +1,5 @@
 package com.coderbunker.assistant.widget;
 
-import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
 import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
@@ -98,7 +96,7 @@ public class WidgetCollectionServiceTest extends BaseTest {
         Intent intent = new Intent(RuntimeEnvironment.application, WidgetCollectionService.class);
         subject.onGetViewFactory(intent);
 
-        verify(repository).saveData(any(ArrayList.class));
+        verify(repository).saveData(widgetId, any(ArrayList.class));
     }
 
     // region private classes

@@ -18,7 +18,7 @@ public class Repository {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public void saveData(ArrayList<String> data) {
+    public void saveData(int widgetId, ArrayList<String> data) {
         preferences.edit()
                 .putStringSet(EXTRA_DATA, new HashSet<>(data))
                 .apply();

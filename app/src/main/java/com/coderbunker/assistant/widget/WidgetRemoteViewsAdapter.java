@@ -4,10 +4,8 @@ package com.coderbunker.assistant.widget;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.coderbunker.assistant.App;
 import com.coderbunker.assistant.R;
 import com.coderbunker.assistant.widget.contracts.IWidgetCollectionAdapter;
 
@@ -25,15 +23,10 @@ public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
     public WidgetRemoteViewsAdapter(Context context, Intent intent, Repository repository) {
         this.context = context;
         this.repository = repository;
-        this.data.add("FAKE ROW");
-
-        Log.d(App.TAG, "[5] update adapter. Try to extract data");
 
         if (intent.hasExtra(DATA_FETCHED)) {
-            Log.d(App.TAG, "Update data from intent");
             intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
             this.data.add(intent.getStringExtra(DATA_FETCHED));
-            Log.d(App.TAG, "[6] data is extracted");
         }
     }
 
@@ -48,7 +41,6 @@ public class WidgetRemoteViewsAdapter implements IWidgetCollectionAdapter {
 
     @Override
     public void onDataSetChanged() {
-        Log.d(App.TAG, "onDataSetChanged");
         data.clear();
         data.addAll(repository.getData());
     }
