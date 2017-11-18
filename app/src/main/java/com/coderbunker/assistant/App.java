@@ -14,8 +14,14 @@ public class App extends Application implements IApplication {
 
     public static final String TAG = "TAG";
 
+    private static IApplication app;
+
     private Component component;
     private Retrofit retrofit;
+
+    public static IApplication getApplication() {
+        return app;
+    }
 
     @Override
     public void onCreate() {
@@ -23,6 +29,7 @@ public class App extends Application implements IApplication {
         MultiDex.install(this);
 
         component = DaggerComponent.builder().build();
+        app = this;
     }
 
     @Override

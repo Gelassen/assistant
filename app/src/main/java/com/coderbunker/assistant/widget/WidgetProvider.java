@@ -28,6 +28,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
     public WidgetProvider() {
         remoteViewsFactory = new WidgetRemoteViewsFactory();
+        appWidgetManager = AppWidgetManager.getInstance((Context) App.getApplication());
     }
 
     public WidgetProvider(AppWidgetManager appWidgetManager,
@@ -39,16 +40,16 @@ public class WidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        Log.d(App.TAG, "[3] receive broadcast");
+        if (intent.getAction().equals(WidgetProvider.DATA_FETCHED)) {
+            int widgetId = intent.getIntExtra(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID);
 
-        int widgetId = intent.getIntExtra(
-                AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID);
-
-        RemoteViews views = remoteViewsFactory.newRemoteViews(context.getPackageName(), R.layout.widget_simple);
-        views.setRemoteAdapter(widgetId, R.id.list, WidgetCollectionService.getIntent(context, widgetId, WidgetCollectionService.getPayload(intent)));
-        getAppWidgetManager(context).updateAppWidget(widgetId, views);
-        getAppWidgetManager(context).notifyAppWidgetViewDataChanged(widgetId, R.id.list);
+            RemoteViews views = remoteViewsFactory.newRemoteViews(context.getPackageName(), R.layout.widget_simple);
+            views.setRemoteAdapter(widgetId, R.id.list, WidgetCollectionService.getIntent(context, widgetId, WidgetCollectionService.getPayload(intent)));
+            appWidgetManager.updateAppWidget(widgetId, views);
+            appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.list);
+        }
     }
 
     @Override
@@ -58,19 +59,9 @@ public class WidgetProvider extends AppWidgetProvider {
         for (int widgetId : appWidgetIds) {
             RemoteViews views = remoteViewsFactory.newRemoteViews(context.getPackageName(), R.layout.widget_simple);
             views.setRemoteAdapter(widgetId, R.id.list, WidgetCollectionService.getIntent(context, widgetId, new ArrayList<String>()));
-            getAppWidgetManager(context).updateAppWidget(widgetId, views);
-            getAppWidgetManager(context).notifyAppWidgetViewDataChanged(widgetId, R.id.list);
+            appWidgetManager.updateAppWidget(widgetId, views);
+            appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.list);
         }
     }
 
-    // region private methods
-
-    private AppWidgetManager getAppWidgetManager(Context context) {
-        if (appWidgetManager == null) {
-            appWidgetManager = AppWidgetManager.getInstance(context);
-        }
-        return appWidgetManager;
-    }
-
-    // endregion
 }

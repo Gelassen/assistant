@@ -21,7 +21,8 @@ public class RepositoryTest extends BaseTest {
 
     @Test
     public void saveData_preferenceReturnsSavedData() {
-        repository.saveData(getData());
+        int widgetId = 10;
+        repository.saveData(widgetId, getData());
 
         ArrayList<String> data = repository.getData();
         assertEquals(3, data.size());
@@ -29,7 +30,8 @@ public class RepositoryTest extends BaseTest {
 
     @Test
     public void getData_preferenceReturnsSavedData() {
-        repository.saveData(getData());
+        int widgetId = 10;
+        repository.saveData(widgetId, getData());
 
         ArrayList<String> data = repository.getData();
 

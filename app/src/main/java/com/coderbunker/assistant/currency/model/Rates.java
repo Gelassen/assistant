@@ -1,6 +1,9 @@
 package com.coderbunker.assistant.currency.model;
 
 
+import android.renderscript.Double2;
+import android.util.Pair;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,344 +11,354 @@ public class Rates {
 
     @SerializedName("AUD")
     @Expose
-    private Double aUD;
+    private Double aud;
     @SerializedName("BGN")
     @Expose
-    private Double bGN;
+    private Double bgn;
     @SerializedName("BRL")
     @Expose
-    private Double bRL;
+    private Double brl;
     @SerializedName("CAD")
     @Expose
-    private Double cAD;
+    private Double cad;
     @SerializedName("CHF")
     @Expose
-    private Double cHF;
+    private Double chf;
     @SerializedName("CNY")
     @Expose
-    private Double cNY;
+    private Double cny;
     @SerializedName("CZK")
     @Expose
-    private Double cZK;
+    private Double czk;
     @SerializedName("DKK")
     @Expose
-    private Double dKK;
+    private Double dkk;
     @SerializedName("GBP")
     @Expose
-    private Double gBP;
+    private Double gbp;
     @SerializedName("HKD")
     @Expose
-    private Double hKD;
+    private Double hkd;
     @SerializedName("HRK")
     @Expose
-    private Double hRK;
+    private Double hrk;
     @SerializedName("HUF")
     @Expose
-    private Double hUF;
+    private Double huf;
     @SerializedName("IDR")
     @Expose
-    private Double iDR;
+    private Double idr;
     @SerializedName("ILS")
     @Expose
-    private Double iLS;
+    private Double ils;
     @SerializedName("INR")
     @Expose
-    private Double iNR;
+    private Double inr;
     @SerializedName("JPY")
     @Expose
-    private Double jPY;
+    private Double jpy;
     @SerializedName("KRW")
     @Expose
-    private Double kRW;
+    private Double krw;
     @SerializedName("MXN")
     @Expose
-    private Double mXN;
+    private Double mxn;
     @SerializedName("MYR")
     @Expose
-    private Double mYR;
+    private Double myr;
     @SerializedName("NOK")
     @Expose
-    private Double nOK;
+    private Double nok;
     @SerializedName("NZD")
     @Expose
-    private Double nZD;
+    private Double nzd;
     @SerializedName("PHP")
     @Expose
-    private Double pHP;
+    private Double php;
     @SerializedName("PLN")
     @Expose
-    private Double pLN;
+    private Double pln;
     @SerializedName("RON")
     @Expose
-    private Double rON;
+    private Double ron;
     @SerializedName("RUB")
     @Expose
-    private Double rUB;
+    private Double rub;
     @SerializedName("SEK")
     @Expose
-    private Double sEK;
+    private Double sek;
     @SerializedName("SGD")
     @Expose
-    private Double sGD;
+    private Double sgd;
     @SerializedName("THB")
     @Expose
-    private Double tHB;
+    private Double thb;
     @SerializedName("TRY")
     @Expose
-    private Double tRY;
+    private Double tryCurrency;
     @SerializedName("ZAR")
     @Expose
-    private Double zAR;
+    private Double zar;
     @SerializedName("EUR")
     @Expose
-    private Double eUR;
+    private Double eur;
+    @SerializedName("USD")
+    @Expose
+    private Double usd;
 
-    public Double getAUD() {
-        return aUD;
+    public Double getAud() {
+        return aud;
     }
 
-    public void setAUD(Double aUD) {
-        this.aUD = aUD;
+    public void setAud(Double aud) {
+        this.aud = aud;
     }
 
-    public Double getBGN() {
-        return bGN;
+    public Double getBgn() {
+        return bgn;
     }
 
-    public void setBGN(Double bGN) {
-        this.bGN = bGN;
+    public void setBgn(Double bgn) {
+        this.bgn = bgn;
     }
 
-    public Double getBRL() {
-        return bRL;
+    public Double getBrl() {
+        return brl;
     }
 
-    public void setBRL(Double bRL) {
-        this.bRL = bRL;
+    public void setBrl(Double brl) {
+        this.brl = brl;
     }
 
-    public Double getCAD() {
-        return cAD;
+    public Double getCad() {
+        return cad;
     }
 
-    public void setCAD(Double cAD) {
-        this.cAD = cAD;
+    public void setCad(Double cad) {
+        this.cad = cad;
     }
 
-    public Double getCHF() {
-        return cHF;
+    public Double getChf() {
+        return chf;
     }
 
-    public void setCHF(Double cHF) {
-        this.cHF = cHF;
+    public void setChf(Double chf) {
+        this.chf = chf;
     }
 
-    public Double getCNY() {
-        return cNY;
+    public Pair<String, Double> getCny() {
+        return new Pair<>("CNY", cny);
     }
 
-    public void setCNY(Double cNY) {
-        this.cNY = cNY;
+    public void setCny(Double cny) {
+        this.cny = cny;
     }
 
-    public Double getCZK() {
-        return cZK;
+    public Double getCzk() {
+        return czk;
     }
 
-    public void setCZK(Double cZK) {
-        this.cZK = cZK;
+    public void setCzk(Double czk) {
+        this.czk = czk;
     }
 
-    public Double getDKK() {
-        return dKK;
+    public Double getDkk() {
+        return dkk;
     }
 
-    public void setDKK(Double dKK) {
-        this.dKK = dKK;
+    public void setDkk(Double dkk) {
+        this.dkk = dkk;
     }
 
-    public Double getGBP() {
-        return gBP;
+    public Double getGbp() {
+        return gbp;
     }
 
-    public void setGBP(Double gBP) {
-        this.gBP = gBP;
+    public void setGbp(Double gbp) {
+        this.gbp = gbp;
     }
 
-    public Double getHKD() {
-        return hKD;
+    public Pair<String, Double> getHkd() {
+        return new Pair<>("HKD", hkd);
     }
 
-    public void setHKD(Double hKD) {
-        this.hKD = hKD;
+    public void setHkd(Double hkd) {
+        this.hkd = hkd;
     }
 
-    public Double getHRK() {
-        return hRK;
+    public Double getHrk() {
+        return hrk;
     }
 
-    public void setHRK(Double hRK) {
-        this.hRK = hRK;
+    public void setHrk(Double hrk) {
+        this.hrk = hrk;
     }
 
-    public Double getHUF() {
-        return hUF;
+    public Double getHuf() {
+        return huf;
     }
 
-    public void setHUF(Double hUF) {
-        this.hUF = hUF;
+    public void setHuf(Double huf) {
+        this.huf = huf;
     }
 
-    public Double getIDR() {
-        return iDR;
+    public Double getIdr() {
+        return idr;
     }
 
-    public void setIDR(Double iDR) {
-        this.iDR = iDR;
+    public void setIdr(Double idr) {
+        this.idr = idr;
     }
 
-    public Double getILS() {
-        return iLS;
+    public Double getIls() {
+        return ils;
     }
 
-    public void setILS(Double iLS) {
-        this.iLS = iLS;
+    public void setIls(Double ils) {
+        this.ils = ils;
     }
 
-    public Double getINR() {
-        return iNR;
+    public Double getInr() {
+        return inr;
     }
 
-    public void setINR(Double iNR) {
-        this.iNR = iNR;
+    public void setInr(Double inr) {
+        this.inr = inr;
     }
 
-    public Double getJPY() {
-        return jPY;
+    public Double getJpy() {
+        return jpy;
     }
 
-    public void setJPY(Double jPY) {
-        this.jPY = jPY;
+    public void setJpy(Double jpy) {
+        this.jpy = jpy;
     }
 
-    public Double getKRW() {
-        return kRW;
+    public Double getKrw() {
+        return krw;
     }
 
-    public void setKRW(Double kRW) {
-        this.kRW = kRW;
+    public void setKrw(Double krw) {
+        this.krw = krw;
     }
 
-    public Double getMXN() {
-        return mXN;
+    public Double getMxn() {
+        return mxn;
     }
 
-    public void setMXN(Double mXN) {
-        this.mXN = mXN;
+    public void setMxn(Double mxn) {
+        this.mxn = mxn;
     }
 
-    public Double getMYR() {
-        return mYR;
+    public Double getMyr() {
+        return myr;
     }
 
-    public void setMYR(Double mYR) {
-        this.mYR = mYR;
+    public void setMyr(Double myr) {
+        this.myr = myr;
     }
 
-    public Double getNOK() {
-        return nOK;
+    public Double getNok() {
+        return nok;
     }
 
-    public void setNOK(Double nOK) {
-        this.nOK = nOK;
+    public void setNok(Double nok) {
+        this.nok = nok;
     }
 
-    public Double getNZD() {
-        return nZD;
+    public Double getNzd() {
+        return nzd;
     }
 
-    public void setNZD(Double nZD) {
-        this.nZD = nZD;
+    public void setNzd(Double nzd) {
+        this.nzd = nzd;
     }
 
-    public Double getPHP() {
-        return pHP;
+    public Double getPhp() {
+        return php;
     }
 
-    public void setPHP(Double pHP) {
-        this.pHP = pHP;
+    public void setPhp(Double php) {
+        this.php = php;
     }
 
-    public Double getPLN() {
-        return pLN;
+    public Double getPln() {
+        return pln;
     }
 
-    public void setPLN(Double pLN) {
-        this.pLN = pLN;
+    public void setPln(Double pln) {
+        this.pln = pln;
     }
 
-    public Double getRON() {
-        return rON;
+    public Double getRon() {
+        return ron;
     }
 
-    public void setRON(Double rON) {
-        this.rON = rON;
+    public void setRon(Double ron) {
+        this.ron = ron;
     }
 
-    public Double getRUB() {
-        return rUB;
+    public Pair<String, Double> getRub() {
+        return new Pair<>("RUB", rub);
     }
 
-    public void setRUB(Double rUB) {
-        this.rUB = rUB;
+    public void setRub(Double rub) {
+        this.rub = rub;
     }
 
-    public Double getSEK() {
-        return sEK;
+    public Double getSek() {
+        return sek;
     }
 
-    public void setSEK(Double sEK) {
-        this.sEK = sEK;
+    public void setSek(Double sek) {
+        this.sek = sek;
     }
 
-    public Double getSGD() {
-        return sGD;
+    public Pair<String, Double> getSgd() {
+        return new Pair<>("SGD", sgd);
     }
 
-    public void setSGD(Double sGD) {
-        this.sGD = sGD;
+    public void setSgd(Double sgd) {
+        this.sgd = sgd;
     }
 
-    public Double getTHB() {
-        return tHB;
+    public Double getThb() {
+        return thb;
     }
 
-    public void setTHB(Double tHB) {
-        this.tHB = tHB;
+    public void setThb(Double thb) {
+        this.thb = thb;
     }
 
-    public Double getTRY() {
-        return tRY;
+    public Double getTryCurrency() {
+        return tryCurrency;
     }
 
-    public void setTRY(Double tRY) {
-        this.tRY = tRY;
+    public void setTryCurrency(Double tryCurrency) {
+        this.tryCurrency = tryCurrency;
     }
 
-    public Double getZAR() {
-        return zAR;
+    public Double getZar() {
+        return zar;
     }
 
-    public void setZAR(Double zAR) {
-        this.zAR = zAR;
+    public void setZar(Double zar) {
+        this.zar = zar;
     }
 
-    public Double getEUR() {
-        return eUR;
+    public Pair<String, Double> getEur() {
+        return new Pair<>("EUR", eur);
     }
 
-    public void setEUR(Double eUR) {
-        this.eUR = eUR;
+    public void setEur(Double eur) {
+        this.eur = eur;
     }
 
+    public Pair<String, Double> getUsd() {
+        return new Pair<>("USD", usd);
+    }
+
+    public void setUsd(Double usd) {
+        this.usd = usd;
+    }
 }

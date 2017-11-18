@@ -63,15 +63,33 @@ public class CurrencyProviderTest extends BaseTest {
     }
 
     @Test
-    public void getCurrency_onUSD_getCurrencyBoardArray() {
+    public void getCurrency_onCNY_getCurrencyBoardArray() {
         TestObserver testObserver = new TestObserver();
 
-        Observable<ArrayList<String>> currencyObservable = service.getCurrencyBoard("USD");
+        Observable<ArrayList<String>> currencyObservable = service.getCurrencyBoard("CNY");
         currencyObservable.subscribe(testObserver);
 
         testObserver.assertNoErrors();
         testObserver.assertComplete();
-        Object result = (VolatileSizeArrayList) testObserver.getEvents().get(0);
-        assertEquals(31, ((ArrayList<String>) result).size());
+        ArrayList<String> result = (ArrayList<String>) ((VolatileSizeArrayList) testObserver.getEvents().get(0)).get(0);
+        assertEquals(5, result.size());
+    }
+
+    @Test
+    public void getCurrency_onCNY_getRatesWith() {
+        TestObserver testObserver = new TestObserver();
+
+        Observable<ArrayList<String>> currencyObservable = service.getCurrencyBoard("CNY");
+        currencyObservable.subscribe(testObserver);
+
+        testObserver.assertNoErrors();
+        testObserver.assertComplete();
+        ArrayList<String> result = (ArrayList<String>) ((VolatileSizeArrayList) testObserver.getEvents().get(0)).get(0);
+
+        assertEquals("USD", result.get(0).split("\\s+")[4]);
+        assertEquals("RUB", result.get(1).split("\\s+")[4]);
+        assertEquals("EUR", result.get(2).split("\\s+")[4]);
+        assertEquals("HKD", result.get(3).split("\\s+")[4]);
+        assertEquals("SGD", result.get(4).split("\\s+")[4]);
     }
 }
