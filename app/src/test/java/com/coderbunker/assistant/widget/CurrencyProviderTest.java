@@ -8,6 +8,7 @@ import com.coderbunker.assistant.utils.MockWebServerRule;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
