@@ -14,7 +14,7 @@ import org.robolectric.annotation.Implements;
         application = TestApp.class,
         sdk = 23
 )
-public class BaseTest {
+public abstract class BaseTest {
 
 
     @Implements(NetworkSecurityPolicy.class)
