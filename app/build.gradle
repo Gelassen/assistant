@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.1.0"
     defaultConfig {
         applicationId "com.coderbunker.assistant"
         minSdkVersion 22
@@ -27,9 +27,8 @@ configurations.all {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:cardview-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:2.0.0-beta4'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
