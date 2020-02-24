@@ -21,7 +21,6 @@ import io.reactivex.observers.TestObserver;
 
 import static org.junit.Assert.assertEquals;
 
-@Ignore
 public class CurrencyProviderTest extends BaseTest {
 
     @Rule

@@ -22,7 +22,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 
-@Ignore
 public class WidgetRemoteViewsAdapterTest extends BaseTest {
 
     @Mock

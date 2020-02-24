@@ -3,7 +3,6 @@ package com.coderbunker.assistant.widget;
 import com.coderbunker.assistant.BaseTest;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
 
-@Ignore
+
 public class RepositoryTest extends BaseTest {
 
     private Repository repository;
