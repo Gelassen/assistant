@@ -27,11 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: SonarCloud Scan
-        run: bash ./gradlew jacocoUnitTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} --stacktrace
+        run: bash ./gradlew jacocoTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} --stacktrace
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - name: Link to SonarCloud Report
 #        run: echo "https://sonarcloud.io/dashboard?id=wkrzywiec_WaWa-Tabor"
+
+#    52fc16f66fee7e5d1a320c92bf1f88be436cce96 --stacktrace
 
   apk:
     name: Generate APK
