@@ -62,6 +62,7 @@ public class MainActivityTest {
                         not(is(mActivityTestRule.getActivity().getWindow().getDecorView()))
                 ))
                 .check(matches(isDisplayed()));
+
     }
 
     private static Matcher<View> childAtPosition(
