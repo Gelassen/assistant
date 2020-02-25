@@ -2,4 +2,6 @@
     <string name="app_name">Assistant</string>
 
     <string name="api_currency">http://api.fixer.io</string>
+
+    <string name="toast_open_the_app">Open the app</string>
 </resources>
