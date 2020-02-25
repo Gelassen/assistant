@@ -20,20 +20,18 @@ jobs:
       - name: Run Unit tests
         run: bash ./gradlew test --stacktrace
 
-  sonar:
-    name: SonarCloud Scan
-    runs-on: ubuntu-18.04
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: SonarCloud Scan
-        run: bash ./gradlew jacocoTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} --stacktrace
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#  sonar:
+#    name: SonarCloud Scan
+#    runs-on: ubuntu-18.04
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: SonarCloud Scan
+#        run: bash ./gradlew jacocoTestReport sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }} --stacktrace
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - name: Link to SonarCloud Report
 #        run: echo "https://sonarcloud.io/dashboard?id=wkrzywiec_WaWa-Tabor"
-
-#    52fc16f66fee7e5d1a320c92bf1f88be436cce96 --stacktrace
 
   apk:
     name: Generate APK
@@ -50,6 +48,9 @@ jobs:
         run: bash ./gradlew assembleDebug --stacktrace
 #        env:
 #          ZTM_API_KEY: ${{ secrets.ZTM_API_KEY }}
+      - name: Print files by path
+        run: ls /home/runner/work/assistant/assistant/app
+
       - name: Upload app APK
         uses: actions/upload-artifact@v1
         with:
